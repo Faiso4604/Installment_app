@@ -11,11 +11,13 @@ class ItemsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view('superadmin.itemsmanagment.add');
-
-    }
+    public function index($customer)
+{
+    $customer = Customer::find($customer);
+    return view('superadmin.itemsmanagment.add', [
+        'customer' => $customer,
+    ]);
+}
 
     /**
      * Show the form for creating a new resource.

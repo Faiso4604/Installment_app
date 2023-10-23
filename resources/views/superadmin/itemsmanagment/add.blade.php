@@ -9,7 +9,7 @@
                     <h2>Add item</h2>
                 </div>
                 <div class="col-6 text-end">
-                    <a href="{{ route('customerlist')}}" class="btn btn-success">Back</a>
+                    <a href="{{ route('customerlist') }}" class="btn btn-success">Back</a>
                 </div>
             </div>
 
@@ -36,30 +36,84 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>Rizwan</td>
-                                                    <td>03126854604</td>
-                                                    <td>Studnent at ACI</td>
+                                                    <td>{{ $customer->customer_name }}</td>
+                                                    <td>{{ $customer->customer_phone }}</td>
+                                                    <td>{{ $customer->customer_address }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
 
                                         <div class="row">
-                                            <div class="mb-3 col-md-6">
-                                                <x-form.label for="product_name">Product name</x-form.label>
-                                                <x-form.input type="text" id="product_name" name="product_name"
-                                                    placeholder="Enter product name!" :value="old('product_name')"></x-form.input>
-                                                @error('product_name')
-                                                    <div class="text-danger">{{ $message }}</div>
-                                                @enderror
+                                            {{-- Product Details Section --}}
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <x-form.label for="product_name">Product name</x-form.label>
+                                                    <x-form.input type="text" id="product_name" name="product_name"
+                                                        placeholder="Enter product name!" :value="old('product_name')"></x-form.input>
+                                                    @error('product_name')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <x-form.label for="product_price">Product Price</x-form.label>
+                                                    <x-form.input type="text" id="product_price" name="product_price"
+                                                        placeholder="Enter product price!" :value="old('product_price')"></x-form.input>
+                                                    @error('product_price')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <x-form.label for="down_payment">Down Payment</x-form.label>
+                                                    <x-form.input type="text" id="down_payment" name="down_payment"
+                                                        placeholder="Enter down payment/advance"
+                                                        :value="old('down_payment')"></x-form.input>
+                                                    @error('down_payment')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <x-form.label for="interest_rate">Interest</x-form.label>
+                                                    <x-form.input type="text" id="interest_rate" name="interest_rate"
+                                                        placeholder="Enter down payment/advance"
+                                                        :value="old('interest_rate')"></x-form.input>
+                                                    @error('interest_rate')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
                                             </div>
 
-                                            <div class="mb-3 col-md-6">
-                                                <x-form.label for="customer_phone">Customer Phone</x-form.label>
-                                                <x-form.input type="text" id="customer_phone" name="customer_phone"
-                                                    placeholder="Enter customer phone!" :value="old('customer_phone')"></x-form.input>
-                                                @error('customer_phone')
-                                                    <div class="text-danger">{{ $message }}</div>
-                                                @enderror
+                                            {{-- Calcutalor section --}}
+                                            <div class="col-md-6 text-center">
+                                                <table class="table table-bordered">
+                                                    <tr>
+                                                        <th>Actual Price</th>
+                                                        <td>10000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Down Payment</th>
+                                                        <td>2000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Per Month</th>
+                                                        <td>2000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Remaining</th>
+                                                        <td>2000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Total</th>
+                                                        <td>2000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Profit</th>
+                                                        <td>2000</td>
+                                                    </tr>
+                                                </table>
                                             </div>
                                         </div>
                                         <div>

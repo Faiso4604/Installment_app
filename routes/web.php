@@ -63,7 +63,7 @@ Route::controller(CustomersListController::class)->middleware(Authenticate::clas
 });
 
 Route::controller(ItemsController::class)->middleware(Authenticate::class)->group(function(){
-    Route::get('superadmin/item/add', 'index')->name('item.add');
+    Route::get('superadmin/item/{customer}/add', 'index')->name('item.add');
 });
 
 Route::controller(CustomerRequestController::class)->middleware(Authenticate::class)->group(function(){

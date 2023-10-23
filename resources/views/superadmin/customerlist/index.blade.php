@@ -41,7 +41,7 @@
 
                                                     <div class="mt-2 mb-2">
                                                         <a href="{{ route('customer.details', $customer) }}" class="btn btn-secondary">Details</a>
-                                                        <a href="{{ route('item.add') }}" class="btn btn-primary">
+                                                        <a href="{{ route('item.add', ['customer' => $customer->id]) }}" class="btn btn-primary">
                                                             <i data-feather="plus-circle"></i> Add Item
                                                         </a>
                                                     </div>
