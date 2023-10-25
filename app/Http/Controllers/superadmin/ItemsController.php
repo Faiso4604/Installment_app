@@ -4,6 +4,7 @@ namespace App\Http\Controllers\superadmin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 
 class ItemsController extends Controller
@@ -11,20 +12,20 @@ class ItemsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($customer)
+    public function index()
 {
-    $customer = Customer::find($customer);
-    return view('superadmin.itemsmanagment.add', [
-        'customer' => $customer,
-    ]);
+
 }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Customer $customer)
     {
-        //
+    return view('superadmin.itemsmanagment.add', [
+        'customer' => $customer,
+        'plans' => Plan::all(),
+    ]);
     }
 
     /**

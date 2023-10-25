@@ -36,7 +36,7 @@
                                                 <td>{{ $plan->id }}</td>
                                                 <td>{{ $plan->plan_name }}</td>
                                                 <td>{{ $plan->months }}</td>
-                                                <td>{{ $plan->interest_rate }}</td>
+                                                <td>{{ $plan->interest_rate }}%</td>
                                                 <td>
                                                     <div class="mt-2 mb-2">
                                                         <a href="{{ route('plans.edit', $plan) }}" class="btn btn-primary">Edit</a>

@@ -74,7 +74,7 @@ Route::controller(PlansController::class)->middleware(Authenticate::class)->grou
 });
 
 Route::controller(ItemsController::class)->middleware(Authenticate::class)->group(function(){
-    Route::get('superadmin/item/{customer}/add', 'index')->name('item.add');
+    Route::get('superadmin/item/{customer}/add', 'create')->name('item.add');
 });
 
 Route::controller(CustomerRequestController::class)->middleware(Authenticate::class)->group(function(){

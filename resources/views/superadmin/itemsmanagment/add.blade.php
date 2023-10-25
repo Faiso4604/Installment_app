@@ -55,33 +55,40 @@
                                                     @enderror
                                                 </div>
 
-                                                <div class="mb-3">
-                                                    <x-form.label for="product_price">Product Price</x-form.label>
-                                                    <x-form.input type="text" id="product_price" name="product_price"
-                                                        placeholder="Enter product price!" :value="old('product_price')"></x-form.input>
-                                                    @error('product_price')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
+                                                {{-- <form action="" id="form"> --}}
+                                                    <div class="mb-3">
+                                                        <x-form.label for="actual_price">Product Price</x-form.label>
+                                                        <x-form.input type="text" id="actual-price-input"
+                                                            name="actual_price" placeholder="Enter product price!"
+                                                            :value="old('actual_price')"></x-form.input>
+                                                        @error('actual_price')
+                                                            <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
 
-                                                <div class="mb-3">
-                                                    <x-form.label for="down_payment">Down Payment</x-form.label>
-                                                    <x-form.input type="text" id="down_payment" name="down_payment"
-                                                        placeholder="Enter down payment/advance"
-                                                        :value="old('down_payment')"></x-form.input>
-                                                    @error('down_payment')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
+                                                    <div class="mb-3">
+                                                        <x-form.label for="down_payment">Down Payment</x-form.label>
+                                                        <x-form.input type="text" id="down-payment-input"
+                                                            name="down_payment" placeholder="Enter down payment/advance"
+                                                            :value="old('down_payment')"></x-form.input>
+                                                        @error('down_payment')
+                                                            <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
 
-                                                <div class="mb-2">
-                                                    <label for="">Plans</label>
-                                                    <select class="form-select" id="plans-input" aria-label="Default select example">
-                                                        <option selected>Select Plan</option>
-                                                        <option value=".3" data-month="12">12 Months 30%</option>
-                                                        <option value=".2" data-month="6">6 Months 20%</option>
-                                                    </select>
-                                                </div>
+                                                    <div class="mb-3">
+                                                        <x-form.label for="">Plan</x-form.label>
+                                                        <select class="form-select" id="plans-input"
+                                                            aria-label="Default select example">
+                                                            <option selected>Select Plan</option>
+                                                            @foreach ($plans as $plan)
+                                                                <option value="{{ $plan->interest_rate }}"
+                                                                    data-month="{{ $plan->months }}">{{ $plan->plan_name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                {{-- </form> --}}
 
                                             </div>
 
@@ -132,4 +139,42 @@
             </div>
         </div>
     </main>
+    <script>
+        const formElement = document.querySelector("form");
+        const actualPriceInputElement = document.querySelector("#actual-price-input");
+        const downPaymentInputElement = document.querySelector("#down-payment-input");
+        const plansInputElement = document.querySelector("#plans-input");
+
+        formElement.addEventListener("input", function() {
+            const selectedOption = plansInputElement.options[plansInputElement.selectedIndex];
+
+            let actualPriceValue = parseInt(actualPriceInputElement.value) || 0;
+            let downPaymentValue = parseInt(downPaymentInputElement.value) || 0;
+            let plansInterestValue = (parseFloat(plansInputElement.value) / 100) || 0;
+            let plansMonthValue = parseInt(selectedOption.dataset.month);
+
+            const actualPriceElement = document.querySelector("#actual-price");
+            const downPaymentElement = document.querySelector("#down-payment");
+            const balanceElement = document.querySelector("#balance");
+            const profitElement = document.querySelector("#profit");
+            const totalDueAmountElement = document.querySelector("#total-due-amount");
+            const perMonthElement = document.querySelector("#per-month");
+            const totalAmountElement = document.querySelector("#total-amount");
+
+            let balance = actualPriceValue - downPaymentValue;
+            let profit = balance * plansInterestValue;
+            let totalAmountDue = balance + profit;
+            let perMonth = totalAmountDue / plansMonthValue;
+            let totalAmount = totalAmountDue + downPaymentValue;
+
+            actualPriceElement.innerText = actualPriceValue;
+            downPaymentElement.innerText = downPaymentValue;
+            balanceElement.innerText = balance;
+            profitElement.innerText = profit;
+            totalDueAmountElement.innerText = totalAmountDue;
+            perMonthElement.innerText = perMonth;
+            totalAmountElement.innerText = totalAmount;
+        });
+    </script>
+
 @endsection
