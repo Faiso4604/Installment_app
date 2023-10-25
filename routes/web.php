@@ -9,6 +9,7 @@ use App\Http\Controllers\superadmin\ProfileController;
 use App\Http\Controllers\superadmin\AdminListController;
 use App\Http\Controllers\superadmin\CustomersListController;
 use App\Http\Controllers\superadmin\CustomerRequestController;
+use App\Http\Controllers\superadmin\PlansController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,16 @@ Route::controller(CustomersListController::class)->middleware(Authenticate::clas
     Route::get('superadmin/customerlist/{customer}/destroy', 'destroy')->name('customer.destroy');
 });
 
+Route::controller(PlansController::class)->middleware(Authenticate::class)->group(function(){
+    Route::get('superadmin/plans/index', 'index')->name('plans.show');
+    Route::get('superadmin/plans/add', 'create')->name('plans.add');
+    Route::post('superadmin/plans/add', 'store');
+    Route::get('superadmin/plans/{plan}/edit', 'edit')->name('plans.edit');
+    Route::post('superadmin/plans/{plan}/edit', 'update');
+    Route::get('superadmin/plans/{plan}/destroy', 'destroy')->name('plan.destroy');
+
+});
+
 Route::controller(ItemsController::class)->middleware(Authenticate::class)->group(function(){
     Route::get('superadmin/item/{customer}/add', 'index')->name('item.add');
 });
@@ -69,3 +80,5 @@ Route::controller(ItemsController::class)->middleware(Authenticate::class)->grou
 Route::controller(CustomerRequestController::class)->middleware(Authenticate::class)->group(function(){
     Route::get('superadmin/customerrequest/index', 'index')->name('request.show');
 });
+
+

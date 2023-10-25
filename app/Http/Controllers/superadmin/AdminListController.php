@@ -14,7 +14,7 @@ class AdminListController extends Controller
      */
     public function index()
     {
-        return view('superadmin.adminlist.show', [
+        return view('superadmin.adminlist.index', [
             'users' => User::where('type', '!=', 'superadmin')->get(),
         ]);
     }

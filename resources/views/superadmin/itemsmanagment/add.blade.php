@@ -74,45 +74,50 @@
                                                     @enderror
                                                 </div>
 
-                                                <div class="mb-3">
-                                                    <x-form.label for="interest_rate">Interest</x-form.label>
-                                                    <x-form.input type="text" id="interest_rate" name="interest_rate"
-                                                        placeholder="Enter down payment/advance"
-                                                        :value="old('interest_rate')"></x-form.input>
-                                                    @error('interest_rate')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
+                                                <div class="mb-2">
+                                                    <label for="">Plans</label>
+                                                    <select class="form-select" id="plans-input" aria-label="Default select example">
+                                                        <option selected>Select Plan</option>
+                                                        <option value=".3" data-month="12">12 Months 30%</option>
+                                                        <option value=".2" data-month="6">6 Months 20%</option>
+                                                    </select>
                                                 </div>
 
                                             </div>
 
                                             {{-- Calcutalor section --}}
-                                            <div class="col-md-6 text-center">
+                                            <div class="col-md-6">
                                                 <table class="table table-bordered">
-                                                    <tr>
-                                                        <th>Actual Price</th>
-                                                        <td>10000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Down Payment</th>
-                                                        <td>2000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Per Month</th>
-                                                        <td>2000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Remaining</th>
-                                                        <td>2000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Total</th>
-                                                        <td>2000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Profit</th>
-                                                        <td>2000</td>
-                                                    </tr>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Actual Price</td>
+                                                            <td id="actual-price"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Down Payment</td>
+                                                            <td id="down-payment"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Balance</td>
+                                                            <td id="balance"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Profit</td>
+                                                            <td id="profit"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total Due Amount</td>
+                                                            <td id="total-due-amount"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Per Month</td>
+                                                            <td id="per-month"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Total Amount</strong></td>
+                                                            <td id="total-amount"></td>
+                                                        </tr>
+                                                    </tbody>
                                                 </table>
                                             </div>
                                         </div>
@@ -125,7 +130,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
 @endsection

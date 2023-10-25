@@ -85,9 +85,9 @@
         <div class="card login-card">
             <div class="card-header login-card-header">Login</div>
             <div class="card-body login-card-body">
+                @include('partials.alerts')
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-
                     <div class="form-group">
                         <i class="bi bi-person"></i>
                         <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="{{ old('email') }}" required autofocus>
