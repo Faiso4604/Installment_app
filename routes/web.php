@@ -55,8 +55,8 @@ Route::controller(AdminListController::class)->middleware(Authenticate::class)->
 
 Route::controller(CustomersListController::class)->middleware(Authenticate::class)->group(function(){
     Route::get('superadmin/customerlist/index', 'index')->name('customerlist');
-    Route::get('superadmin/customerlist/add', 'create')->name('customer.add');
-    Route::post('superadmin/customerlist/add', 'store');
+    Route::get('superadmin/customerlist/create', 'create')->name('customer.create');
+    Route::post('superadmin/customerlist/create', 'store');
     Route::get('superadmin/customerlist/{customer}/details', 'details')->name('customer.details');
     Route::get('superadmin/customerlist/{customer}/edit', 'edit')->name('customer.edit');
     Route::post('superadmin/customerlist/{customer}/edit', 'update');
@@ -65,8 +65,8 @@ Route::controller(CustomersListController::class)->middleware(Authenticate::clas
 
 Route::controller(PlansController::class)->middleware(Authenticate::class)->group(function(){
     Route::get('superadmin/plans/index', 'index')->name('plans.show');
-    Route::get('superadmin/plans/add', 'create')->name('plans.add');
-    Route::post('superadmin/plans/add', 'store');
+    Route::get('superadmin/plans/create', 'create')->name('plans.create');
+    Route::post('superadmin/plans/create', 'store');
     Route::get('superadmin/plans/{plan}/edit', 'edit')->name('plans.edit');
     Route::post('superadmin/plans/{plan}/edit', 'update');
     Route::get('superadmin/plans/{plan}/destroy', 'destroy')->name('plan.destroy');
@@ -74,11 +74,15 @@ Route::controller(PlansController::class)->middleware(Authenticate::class)->grou
 });
 
 Route::controller(ItemsController::class)->middleware(Authenticate::class)->group(function(){
-    Route::get('superadmin/item/{customer}/add', 'create')->name('item.add');
+    Route::get('superadmin/item/{customer}/create', 'create')->name('item.create');
+    Route::post('superadmin/item/{customer}/create', 'store');
 });
 
 Route::controller(CustomerRequestController::class)->middleware(Authenticate::class)->group(function(){
     Route::get('superadmin/customerrequest/index', 'index')->name('request.show');
 });
+
+
+
 
 

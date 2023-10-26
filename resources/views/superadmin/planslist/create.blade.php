@@ -18,7 +18,7 @@
                     <div class="card">
                         <div class="card-body">
                             @include('partials.alerts')
-                            <form action="{{ route('plans.add') }}" method="post">
+                            <form action="{{ route('plans.create') }}" method="post">
                                 @csrf
                                     <div class="col-md-8 m-auto">
                                         <div class="mb-3">

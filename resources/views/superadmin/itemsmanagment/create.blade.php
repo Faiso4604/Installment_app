@@ -18,7 +18,7 @@
                     <div class="card">
                         <div class="card-body">
                             @include('partials.alerts')
-                            <form action="" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('item.create', $customer) }}" method="post">
                                 @csrf
                                 <div class="col-md-12  m-auto">
                                     <div class="row">
@@ -56,38 +56,38 @@
                                                 </div>
 
                                                 {{-- <form action="" id="form"> --}}
-                                                    <div class="mb-3">
-                                                        <x-form.label for="actual_price">Product Price</x-form.label>
-                                                        <x-form.input type="text" id="actual-price-input"
-                                                            name="actual_price" placeholder="Enter product price!"
-                                                            :value="old('actual_price')"></x-form.input>
-                                                        @error('actual_price')
-                                                            <div class="text-danger">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
+                                                <div class="mb-3">
+                                                    <x-form.label for="actual_price">Product Price</x-form.label>
+                                                    <x-form.input type="text" id="actual-price-input" name="actual_price"
+                                                        placeholder="Enter product price!" :value="old('actual_price')"></x-form.input>
+                                                    @error('actual_price')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
 
-                                                    <div class="mb-3">
-                                                        <x-form.label for="down_payment">Down Payment</x-form.label>
-                                                        <x-form.input type="text" id="down-payment-input"
-                                                            name="down_payment" placeholder="Enter down payment/advance"
-                                                            :value="old('down_payment')"></x-form.input>
-                                                        @error('down_payment')
-                                                            <div class="text-danger">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
+                                                <div class="mb-3">
+                                                    <x-form.label for="down_payment">Down Payment</x-form.label>
+                                                    <x-form.input type="text" id="down-payment-input" name="down_payment"
+                                                        placeholder="Enter down payment/advance"
+                                                        :value="old('down_payment')"></x-form.input>
+                                                    @error('down_payment')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
 
-                                                    <div class="mb-3">
-                                                        <x-form.label for="">Plan</x-form.label>
-                                                        <select class="form-select" id="plans-input"
-                                                            aria-label="Default select example">
-                                                            <option selected>Select Plan</option>
-                                                            @foreach ($plans as $plan)
-                                                                <option value="{{ $plan->interest_rate }}"
-                                                                    data-month="{{ $plan->months }}">{{ $plan->plan_name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
+                                                <div class="mb-3">
+                                                    <x-form.label for="">Plan</x-form.label>
+                                                    <select class="form-select" id="plans-input" name="plan_id"
+                                                        aria-label="Default select example">
+                                                        <option selected>Select Plan</option>
+                                                        @foreach ($plans as $plan)
+                                                            <option value="{{ $plan->id }}"
+                                                                data-interest="{{ $plan->interest_rate }}"
+                                                                data-month="{{ $plan->months }}">{{ $plan->plan_name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                                 {{-- </form> --}}
 
                                             </div>
@@ -98,31 +98,31 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>Actual Price</td>
-                                                            <td id="actual-price"></td>
+                                                            <td id="actual-price" :value="old('product_name')"></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Down Payment</td>
-                                                            <td id="down-payment"></td>
+                                                            <td id="down-payment" :value="old('actual-price')"></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Balance</td>
-                                                            <td id="balance"></td>
+                                                            <td id="balance" :value="old('balance')"></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Profit</td>
-                                                            <td id="profit"></td>
+                                                            <td id="profit" :value="old('profit')"></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Total Due Amount</td>
-                                                            <td id="total-due-amount"></td>
+                                                            <td id="total-due-amount" :value="old('total-due-amount')"></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Per Month</td>
-                                                            <td id="per-month"></td>
+                                                            <td id="per-month" :value="old('per-month')"></td>
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Total Amount</strong></td>
-                                                            <td id="total-amount"></td>
+                                                            <td id="total-amount" :value="old('total-amount')"></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -150,7 +150,7 @@
 
             let actualPriceValue = parseInt(actualPriceInputElement.value) || 0;
             let downPaymentValue = parseInt(downPaymentInputElement.value) || 0;
-            let plansInterestValue = (parseFloat(plansInputElement.value) / 100) || 0;
+            let plansInterestValue = (parseInt(selectedOption.dataset.interest) / 100) || 0;
             let plansMonthValue = parseInt(selectedOption.dataset.month);
 
             const actualPriceElement = document.querySelector("#actual-price");

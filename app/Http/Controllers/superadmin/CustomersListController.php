@@ -25,7 +25,7 @@ class CustomersListController extends Controller
      */
     public function create()
     {
-        return view('superadmin.customerlist.add');
+        return view('superadmin.customerlist.create');
     }
 
     /**

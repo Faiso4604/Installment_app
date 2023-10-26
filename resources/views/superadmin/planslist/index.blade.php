@@ -10,7 +10,7 @@
                             <h2>Installment Plans</h2>
                         </div>
                         <div class="col-6 text-end">
-                            <a href="{{ route('plans.add') }}" class="btn btn-success">
+                            <a href="{{ route('plans.create') }}" class="btn btn-success">
                                 Add Plan
                             </a>
                         </div>

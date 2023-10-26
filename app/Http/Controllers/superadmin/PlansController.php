@@ -23,7 +23,7 @@ class PlansController extends Controller
      */
     public function create()
     {
-        return view('superadmin.planslist.add');
+        return view('superadmin.planslist.create');
     }
 
     /**
