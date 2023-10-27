@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\superadmin;
 
+use App\Models\Item;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -75,12 +76,15 @@ class CustomersListController extends Controller
     /**
      * Display the specified resource.
      */
+
     public function details(Customer $customer)
     {
         return view('superadmin.customerlist.details', [
             'customer' => $customer,
+            'items' => Item::where('customer_id', '=', $customer->id)->paginate(1),
         ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.

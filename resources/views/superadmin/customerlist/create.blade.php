@@ -18,7 +18,7 @@
                     <div class="card">
                         <div class="card-body">
                             @include('partials.alerts')
-                            <form action="{{ route('customer.add') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('customer.create') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-md-12  m-auto">
                                     <div class="row">

@@ -18,4 +18,10 @@ class Customer extends Model
         'guarantor_address',
         'guarantor_placeofwork',
     ];
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
+    
 }

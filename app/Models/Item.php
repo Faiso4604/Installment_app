@@ -20,4 +20,10 @@ class Item extends Model
         'per_month',
         'total_amount',
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }
+
