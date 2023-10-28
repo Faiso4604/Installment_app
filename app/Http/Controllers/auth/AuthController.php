@@ -26,7 +26,7 @@ class AuthController extends Controller
         if (Auth::attempt($request->except(['_token', 'submit']))) {
             $type = Auth::user()->type;
             if ($type == "superadmin") {
-                return redirect()->route('customerlist');
+                return redirect()->route('superadmin.dashboard');
             } elseif ($type == "admin") {
                 return redirect()->route('request.show');
             } else {

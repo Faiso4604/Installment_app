@@ -6,6 +6,12 @@
 
         <ul class="sidebar-nav">
             <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('superadmin.dashboard') }}">
+                    <i class="align-middle" data-feather="trello"></i> <span class="align-middle">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('customerlist') }}">
                     <i class="align-middle" data-feather="users"></i> <span class="align-middle">Customers</span>
                 </a>
@@ -26,7 +32,7 @@
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('plans.show') }}">
-                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">Plans</span>
+                    <i class="align-middle" data-feather="package"></i> <span class="align-middle">Plans</span>
                 </a>
             </li>
         </ul>

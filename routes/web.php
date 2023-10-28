@@ -9,6 +9,7 @@ use App\Http\Controllers\superadmin\ProfileController;
 use App\Http\Controllers\superadmin\AdminListController;
 use App\Http\Controllers\superadmin\CustomersListController;
 use App\Http\Controllers\superadmin\CustomerRequestController;
+use App\Http\Controllers\superadmin\DashboardController;
 use App\Http\Controllers\superadmin\PlansController;
 
 /*
@@ -31,6 +32,14 @@ Route::controller(AuthController::class)->group(function(){
         Route::post('register', 'register');
     });
     Route::get('logout', 'logout')->name('logout');
+});
+
+
+
+Route::middleware(Authenticate::class)->group(function(){
+    Route::controller(DashboardController::class)->group(function(){
+     Route::get('superadmin/dashboard', 'index')->name('superadmin.dashboard');
+    });
 });
 
 Route::middleware(Authenticate::class)->group(function(){
