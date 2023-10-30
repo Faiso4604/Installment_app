@@ -52,20 +52,8 @@ class ItemsController extends Controller
         $per_month = $total_due_amount / $months;
         $total_amount = $total_due_amount + $down_payment;
 
-        // dump($request->all());
-        // dump($actual_price);
-        // dump($down_payment);
-        // dump($months);
-        // dump($interest_rate);
-
-        // dump($balance);
-        // dump($profit);
-        // dump($total_due_amount);
-        // dump($per_month);
-        // dump($balance);
-        // die();
-
         $data = [
+            'plan_id' => $plan->id,
             'customer_id' => $customer->id,
             'item_name' => $request->product_name,
             'item_price' => $actual_price,
@@ -75,6 +63,7 @@ class ItemsController extends Controller
             'total_due_amount' => $total_due_amount,
             'per_month' => $per_month,
             'total_amount' => $total_amount,
+            'remaining_amount' => $total_due_amount,
         ];
 
         $is_registered = Item::create($data);

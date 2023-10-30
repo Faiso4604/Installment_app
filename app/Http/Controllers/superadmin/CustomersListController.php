@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Installment;
 use Illuminate\Support\Facades\Hash;
 
 class CustomersListController extends Controller

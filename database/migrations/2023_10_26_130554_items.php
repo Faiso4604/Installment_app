@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('plan_id')->references('id')->on('plans')->onUpdate('cascade')->onDelete('cascade');
             $table->string('item_name');
             $table->string('item_price');
             $table->string('down_payment');
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->string('total_due_amount');
             $table->string('per_month');
             $table->string('total_amount');
+            $table->string('remaining_amount');
             $table->timestamps();
         });
     }

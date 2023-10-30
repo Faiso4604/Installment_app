@@ -75,6 +75,7 @@
                                                     @enderror
                                                 </div>
 
+
                                                 <div class="mb-3">
                                                     <x-form.label for="">Plan</x-form.label>
                                                     <select class="form-select" id="plans-input" name="plan_id"

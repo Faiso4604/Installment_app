@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Auth\Middleware\Authenticate;
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\superadmin\InstallmentController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\superadmin\ItemsController;
 use App\Http\Controllers\superadmin\ProfileController;
@@ -48,8 +49,6 @@ Route::middleware(Authenticate::class)->group(function(){
      Route::post('superadmin/details/edit', 'update_details')->name('profile.details');
      Route::post('superadmin/picture/edit', 'update_picture')->name('profile.picture');
      Route::post('superadmin/password/edit', 'update_password')->name('profile.password');
-
-
     });
 });
 
@@ -89,6 +88,11 @@ Route::controller(ItemsController::class)->middleware(Authenticate::class)->grou
 
 Route::controller(CustomerRequestController::class)->middleware(Authenticate::class)->group(function(){
     Route::get('superadmin/customerrequest/index', 'index')->name('request.show');
+});
+
+Route::controller(InstallmentController::class)->middleware(Authenticate::class)->group(function(){
+    Route::post('superadmin/installment/{item}/create', 'store')->name('installment.create');
+    Route::get('superadmin/installment/{installment}/destroy', 'destroy')->name('installment.destroy');
 });
 
 
