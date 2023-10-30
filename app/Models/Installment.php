@@ -11,6 +11,7 @@ class Installment extends Model
     protected $fillable = [
         'item_id',
         'add_installment',
+        'remark',
         'total_remaining_amount',
     ];
 }

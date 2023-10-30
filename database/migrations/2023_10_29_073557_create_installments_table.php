@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('item_id')->references('id')->on('items')->onUpdate('cascade')->onDelete('cascade');
             $table->string('add_installment');
+            $table->string('remark');
             $table->string('total_remaining_amount');
             $table->timestamps();
         });

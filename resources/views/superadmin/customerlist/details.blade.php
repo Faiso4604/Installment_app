@@ -3,7 +3,7 @@
 @section('content')
     <main class="content">
         <div class="container-fluid p-0">
-            <div class="row">
+            <div class="row mb-1">
                 <div class="col-4">
                     <div>
                         <strong>Created date: </strong>{{ $customer->created_at->format('d-M-Y') }}
@@ -15,6 +15,7 @@
                     </div>
                 </div>
                 <div class="col-4 text-end">
+                    <a href="{{ route('item.create', $customer) }}" class="btn btn-primary">Add new item</a>
                     <a href="{{ route('customerlist') }}" class="btn btn-success">Back</a>
                 </div>
             </div>
@@ -106,10 +107,32 @@
                                         <form class="form-group" action="{{ route('installment.create', $item) }}"
                                             method="POST">
                                             @csrf
-                                            <div class="col-md-6 m-auto text-center mt-4">
-                                                <input type="text" class="form-control text-center"
-                                                    name="add_installment" id="receivingAmount"
-                                                    placeholder="Enter the receiving amount">
+
+                                            <div class="row">
+                                                <div class="col-md-5 m-auto text-center mt-4">
+                                                <x-form.label for="add_installment">Amount</x-form.label>
+                                                    <input type="text" class="form-control text-center"
+                                                        name="add_installment" id="add_installment"
+                                                        placeholder="Enter the receiving amount" value="{{ old('add_installment') }}">
+                                                        @error('add_installment')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="col-md-5 m-auto text-center mt-4">
+                                                    <x-form.label for="">Remarks</x-form.label>
+                                                    <select class="form-select" id="remark" name="remark"
+                                                        aria-label="Disabled select example">
+                                                        <option selected disabled>Payment remark</option>
+                                                            <option>Cash</option>
+                                                            <option>Easypaisa</option>
+                                                            <option>Bank Account</option>
+                                                            <option>Other</option>
+                                                    </select>
+                                                    @error('remark')
+                                                        <div class="text-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
                                             </div>
 
                                             <div class="row text mt-2">
@@ -132,6 +155,7 @@
                                             <th scope="col">Date</th>
                                             <th scope="col">Installment</th>
                                             <th scope="col">Remaining</th>
+                                            <th scope="col">Remarks</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -139,14 +163,20 @@
                                     <tbody>
                                         @foreach ($item->installments as $installment)
                                             <tr>
-                                                <td>{{ $installment->created_at }}</td>
+                                                <td>{{ $installment->created_at->format('d-M-Y - h:i A') }}</td>
                                                 <th>{{ $installment->add_installment }}</th>
                                                 <td>{{ $installment->total_remaining_amount }}</td>
+                                                <th>{{ $installment->remark }}</th>
                                                 <td>
-                                                    <a href="{{ route('installment.destroy', $installment) }}"
-                                                        class="btn btn-danger">
-                                                        <i data-feather="trash-2"></i> Delete
+                                                    <a href="" class="btn btn-primary btn-sm">
+                                                        <i data-feather="printer"></i> Print
                                                     </a>
+                                                    @if ($loop->last)
+                                                        <a href="{{ route('installment.destroy', $installment) }}"
+                                                            class="btn btn-danger btn-sm">
+                                                            <i data-feather="trash-2"></i> Delete
+                                                        </a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

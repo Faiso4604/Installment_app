@@ -32,38 +32,40 @@ class InstallmentController extends Controller
     {
         $request->validate([
             'add_installment' => ['required'],
+            'remark' => ['required'],
         ]);
 
         $total_due_amount = $item->remaining_amount;
         $add_installment = $request->add_installment;
         // dd($item->total_due_amount);
 
-       $total_remaining_amount = $total_due_amount - $add_installment;
-    //    dump($remaining);
+        $total_remaining_amount = $total_due_amount - $add_installment;
+        //    dump($remaining);
 
-    $data = [
-        'item_id' => $item->id,
-        'total_remaining_amount' => $total_remaining_amount,
-        'add_installment' => $add_installment,
-    ];
+        $data = [
+            'item_id' => $item->id,
+            'total_remaining_amount' => $total_remaining_amount,
+            'add_installment' => $add_installment,
+            'remark' => $request->remark,
 
-    $is_paid = Installment::create($data);
+        ];
 
-    if ($is_paid) {
-        // Update the 'remaining_amount' in the 'items' table
-        $item->update(['remaining_amount' => $total_remaining_amount]);
-        return back()->with(['success' => 'Installment added']);
-    } else {
-        return back()->with(['failure' => 'Failed to add!']);
+        $is_paid = Installment::create($data);
+
+        if ($is_paid) {
+            // Update the 'remaining_amount' in the 'items' table
+            $item->update(['remaining_amount' => $total_remaining_amount]);
+            return back()->with(['success' => 'Installment added']);
+        } else {
+            return back()->with(['failure' => 'Failed to add!']);
+        }
     }
-}
 
     /**
      * Display the specified resource.
      */
     public function show(Installment $installment)
     {
-
     }
 
     /**
@@ -86,27 +88,26 @@ class InstallmentController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Installment $installment)
-{
-    // Retrieve the add_installment and item_id from the Installment record
-    $add_installment = $installment->add_installment;
-    $item_id = $installment->item_id;
+    {
+        // Retrieve the add_installment and item_id from the Installment record
+        $add_installment = $installment->add_installment;
+        $item_id = $installment->item_id;
 
-    // Delete the Installment record
-    $is_deleted = $installment->delete();
+        // Delete the Installment record
+        $is_deleted = $installment->delete();
 
-    if ($is_deleted) {
-        // Update the remaining_amount in the items table
-        $item = Item::find($item_id);
-        $current_remaining_amount = $item->remaining_amount;
-        $new_remaining_amount = $current_remaining_amount + $add_installment;
+        if ($is_deleted) {
+            // Update the remaining_amount in the items table
+            $item = Item::find($item_id);
+            // $current_remaining_amount = $item->remaining_amount;
+            $new_remaining_amount = $item->remaining_amount + $add_installment;
 
-        // Update the remaining_amount in the items table
-        $item->update(['remaining_amount' => $new_remaining_amount]);
+            // Update the remaining_amount in the items table
+            $item->update(['remaining_amount' => $new_remaining_amount]);
 
-        return back()->with(['success' => 'Installment record has been deleted']);
-    } else {
-        return back()->with(['failure' => 'Something went wrong']);
+            return back()->with(['success' => 'Installment record has been deleted']);
+        } else {
+            return back()->with(['failure' => 'Something went wrong']);
+        }
     }
-}
-
 }
