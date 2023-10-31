@@ -40,16 +40,18 @@
                                                 <td class="text-center p-0 m-0">
 
                                                     <div class="mt-2 mb-2">
-                                                        <a href="{{ route('customer.details', $customer) }}" class="btn btn-secondary">Details</a>
+                                                        <a href="{{ route('customer.details', $customer) }}" class="btn btn-secondary">
+                                                            <i data-feather="book"></i> Details
+                                                        </a>
                                                         <a href="{{ route('item.create', ['customer' => $customer->id]) }}" class="btn btn-primary">
                                                             <i data-feather="plus-circle"></i> Add Item
                                                         </a>
                                                     </div>
                                                     <div class="mt-2 mb-2">
-                                                        <a href="{{ route('customer.edit', $customer) }}" class="btn btn-primary">
+                                                        <a href="{{ route('customer.edit', $customer) }}" class="btn btn-primary btn-sm">
                                                             <i data-feather="edit"></i> Edit
                                                         </a>
-                                                        <a href="{{ route('customer.destroy', $customer) }}" class="btn btn-danger">
+                                                        <a href="{{ route('customer.destroy', $customer) }}" class="btn btn-danger btn-sm">
                                                             <i data-feather="trash-2"></i> Delete
                                                         </a>
                                                     </div>

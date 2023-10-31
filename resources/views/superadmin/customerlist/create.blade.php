@@ -37,7 +37,7 @@
 
                                             <div class="mb-3">
                                                 <x-form.label for="customer_phone">Customer Phone</x-form.label>
-                                                <x-form.input type="text" id="customer_phone" name="customer_phone"
+                                                <x-form.input type="text" id="customer_phone" name="customer_phone" maxlength="11"
                                                     placeholder="Enter customer phone!" :value="old('customer_phone')"></x-form.input>
                                                 @error('customer_phone')
                                                     <div class="text-danger">{{ $message }}</div>
@@ -79,7 +79,7 @@
 
                                             <div class="mb-3">
                                                 <x-form.label for="guarantor_phone">Guarantor Phone</x-form.label>
-                                                <x-form.input type="text" id="guarantor_phone" name="guarantor_phone"
+                                                <x-form.input type="text" id="guarantor_phone" name="guarantor_phone" maxlength="11"
                                                     placeholder="Enter guarantor phone!" :value="old('guarantor_phone')"></x-form.input>
                                                 @error('guarantor_phone')
                                                     <div class="text-danger">{{ $message }}</div>
