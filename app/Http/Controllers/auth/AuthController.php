@@ -28,7 +28,7 @@ class AuthController extends Controller
             if ($type == "superadmin") {
                 return redirect()->route('superadmin.dashboard');
             } elseif ($type == "admin") {
-                return redirect()->route('request.show');
+                return redirect()->route('admin.dashboard');
             } else {
                 Auth::logout();
                 return redirect()->route('login');
