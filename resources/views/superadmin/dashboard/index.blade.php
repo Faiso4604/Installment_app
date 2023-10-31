@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('superadmin.layouts.superadmin_main')
 @section('title', 'Dashboard')
 @section('content')
     <main class="content">

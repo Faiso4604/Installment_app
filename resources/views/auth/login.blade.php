@@ -85,7 +85,7 @@
         <div class="card login-card">
             <div class="card-header login-card-header">Login</div>
             <div class="card-body login-card-body">
-                @include('partials.alerts')
+                @include('superadmin.partials.alerts')
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group">

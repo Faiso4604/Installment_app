@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('superadmin.layouts.superadmin_main')
 @section('title', 'Profile')
 @section('content')
     <main class="content">
@@ -10,7 +10,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            @include('partials.alerts')
+                            @include('superadmin.partials.alerts')
                             <form action="{{ route('profile.details') }}" method="post">
                                 @csrf
 

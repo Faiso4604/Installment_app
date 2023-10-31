@@ -1,5 +1,5 @@
-@extends('layouts.main')
-@section('title', 'Dashboard')
+@extends('superadmin.layouts.superadmin_main')
+@section('title', 'Customer Details')
 @section('content')
     <main class="content">
         <div class="container-fluid p-0">
@@ -23,7 +23,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            @include('partials.alerts')
+                            @include('superadmin.partials.alerts')
                             {{-- Customer Details --}}
                             <div class="row">
                                 {{-- Customer data --}}
@@ -122,7 +122,7 @@
                                                 <div class="col-md-5 m-auto text-center mt-4">
                                                     <x-form.label for="">Remarks</x-form.label>
                                                     <select class="form-select" id="remark" name="remark"
-                                                        aria-label="Disabled select example">
+                                                        aria-label="Disabled select example" value="{{ old('add_installment') }}">
                                                         <option selected disabled>Payment remark</option>
                                                             <option>Cash</option>
                                                             <option>Easypaisa</option>

@@ -1,5 +1,5 @@
-@extends('layouts.main')
-@section('title', 'Dashboard')
+@extends('superadmin.layouts.superadmin_main')
+@section('title', 'Customers')
 @section('content')
     <main class="content">
         <div class="container-fluid p-0">
@@ -17,7 +17,7 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            @include('partials.alerts')
+                            @include('superadmin.partials.alerts')
                             @if (count($customers) > 0)
                                 <table class="table table-bordered">
                                     <thead>

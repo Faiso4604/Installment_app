@@ -1,5 +1,5 @@
-@extends('layouts.main')
-@section('title', 'Dashboard')
+@extends('superadmin.layouts.superadmin_main')
+@section('title', 'Add Plan')
 @section('content')
     <main class="content">
         <div class="container-fluid p-0">
@@ -17,7 +17,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            @include('partials.alerts')
+                            @include('superadmin.partials.alerts')
                             <form action="{{ route('plans.create') }}" method="post">
                                 @csrf
                                     <div class="col-md-8 m-auto">

@@ -2,14 +2,14 @@
 <html lang="en">
 
 
-@include('partials.head')
+@include('superadmin.partials.head')
 
 <body>
     <div class="wrapper">
-        @include('partials.sidebar')
+        @include('superadmin.partials.sidebar')
 
         <div class="main">
-            @include('partials.topbar')
+            @include('superadmin.partials.topbar')
 
             @yield('content')
 

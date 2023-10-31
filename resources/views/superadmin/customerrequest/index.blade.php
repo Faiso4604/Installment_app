@@ -1,5 +1,5 @@
-@extends('layouts.main')
-@section('title', 'Dashboard')
+@extends('superadmin.layouts.superadmin_main')
+@section('title', 'Customers Request')
 @section('content')
     <main class="content">
         <div class="container-fluid p-0">

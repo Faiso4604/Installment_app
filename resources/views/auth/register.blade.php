@@ -87,7 +87,7 @@
             <div class="card-body register-card-body">
 
                 <form method="POST" action="{{ route('register') }}">
-                    @include('partials.alerts')
+                    @include('superadmin.partials.alerts')
                     @csrf
                     <div class="form-group">
                         <i class="bi bi-person"></i>
