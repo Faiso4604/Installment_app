@@ -7,7 +7,7 @@
                     <div class="card">
                         <div class="card-body">
                             @include('superadmin.partials.alerts')
-                            {{-- @if (count($items) > 0) --}}
+                            @if (count($items) > 0)
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -34,16 +34,16 @@
                                                 <td>
                                                     <div class="mt-2 mb-2">
                                                         <a href="{{ route('item.edit', $item) }}" class="btn btn-primary">Edit</a>
-                                                        <a href="#" class="btn btn-danger">Delete</a>
+                                                        <a href="{{ route('item.destroy', $item) }}" class="btn btn-danger">Delete</a>
                                                     </div>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
-                             {{-- @else
+                             @else
                                 <div class="alert alert-info">No record found</div>
-                            @endif --}}
+                            @endif
                         </div>
                     </div>
                 </div>

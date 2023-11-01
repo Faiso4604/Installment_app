@@ -36,8 +36,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::middleware(RedirectIfAuthenticated::class)->group(function () {
         Route::get('/', 'login_view')->name('login');
         Route::post('/', 'login');
-        Route::get('register', 'register_view')->name('register');
-        Route::post('register', 'register');
+        // Route::get('register', 'register_view')->name('register');
+        // Route::post('register', 'register');
     });
     Route::get('logout', 'logout')->name('logout');
 });
@@ -90,6 +90,7 @@ Route::middleware(Authenticate::class)->group(function () {
             Route::get('item/{item}/edit', 'edit')->name('item.edit');
             Route::post('item/{item}/edit', 'update');
             Route::post('item/{customer}/create', 'store');
+            Route::get('item/{item}/destroy', 'destroy')->name('item.destroy');
         });
 
         Route::controller(CustomerRequestController::class)->group(function () {

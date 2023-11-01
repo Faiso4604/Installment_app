@@ -39,33 +39,33 @@ class AuthController extends Controller
     }
 
     // Register section
-    public function register_view()
-    {
-        return view('auth.register');
-    }
+    // public function register_view()
+    // {
+    //     return view('auth.register');
+    // }
 
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => ['required'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'confirmed'],
-        ]);
+    // public function register(Request $request)
+    // {
+    //     $request->validate([
+    //         'name' => ['required'],
+    //         'email' => ['required', 'email', 'unique:users,email'],
+    //         'password' => ['required', 'confirmed'],
+    //     ]);
 
-        $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ];
+    //     $data = [
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'password' => Hash::make($request->password),
+    //     ];
 
-        $is_registered = User::create($data);
+    //     $is_registered = User::create($data);
 
-        if ($is_registered) {
-            return back()->with(['success' => 'Successfully registered!']);
-        } else {
-            return back()->with(['failure' => 'Failed to register!']);
-        }
-    }
+    //     if ($is_registered) {
+    //         return back()->with(['success' => 'Successfully registered!']);
+    //     } else {
+    //         return back()->with(['failure' => 'Failed to register!']);
+    //     }
+    // }
 
     public function logout()
     {

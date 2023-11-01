@@ -148,8 +148,13 @@ class ItemsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Item $item)
     {
-        //
+        $is_deleted = $item->delete();
+        if ($is_deleted) {
+            return back()->with(['success' => $item->item_name . ' item of ' . $item->customers->customer_name . ' record has been deleted']);
+        } else {
+            return back()->with(['failure' => 'Something went wrong']);
+        }
     }
 }
