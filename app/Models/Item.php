@@ -27,4 +27,7 @@ class Item extends Model
     {
         return $this->hasMany(Installment::class);
     }
+    public function customers() {
+    return $this->belongsTo(Customer::class, 'customer_id', 'id');
+}
 }

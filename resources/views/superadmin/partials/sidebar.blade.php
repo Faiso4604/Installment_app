@@ -35,6 +35,11 @@
                     <i class="align-middle" data-feather="package"></i> <span class="align-middle">Plans</span>
                 </a>
             </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('items.show') }}">
+                    <i class="align-middle" data-feather="package"></i> <span class="align-middle">Item Management</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
