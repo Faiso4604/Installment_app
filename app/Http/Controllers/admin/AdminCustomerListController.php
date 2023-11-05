@@ -35,10 +35,12 @@ class AdminCustomerListController extends Controller
         $request->validate([
             'customer_name' => ['required'],
             'customer_phone' => ['required'],
+            'customer_cnic' => ['required'],
             'customer_address' => ['required'],
             'customer_placeofwork' => ['required'],
             'guarantor_name' => ['required'],
             'guarantor_phone' => ['required'],
+            'guarantor_cnic' => ['required'],
             'guarantor_address' => ['required'],
             'guarantor_placeofwork' => ['required'],
         ]);
@@ -46,10 +48,12 @@ class AdminCustomerListController extends Controller
         $data = [
             'customer_name' => $request->customer_name,
             'customer_phone' => $request->customer_phone,
+            'customer_cnic' => $request->customer_cnic,
             'customer_address' => $request->customer_address,
             'customer_placeofwork' => $request->customer_placeofwork,
             'guarantor_name' => $request->guarantor_name,
             'guarantor_phone' => $request->guarantor_phone,
+            'guarantor_cnic' => $request->customer_cnic,
             'guarantor_address' => $request->guarantor_address,
             'guarantor_placeofwork' => $request->guarantor_placeofwork,
         ];

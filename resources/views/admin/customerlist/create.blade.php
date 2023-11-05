@@ -45,6 +45,15 @@
                                             </div>
 
                                             <div class="mb-3">
+                                                <x-form.label for="customer_cnic">Customer CNIC</x-form.label>
+                                                <x-form.input type="text" id="customer_cnic" name="customer_cnic" maxlength="13"
+                                                    placeholder="Enter customer cnic!" :value="old('customer_cnic')"></x-form.input>
+                                                @error('customer_cnic')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-3">
                                                 <x-form.label for="customer_address">Customer address</x-form.label>
                                                 <x-form.input type="text" id="customer_address" name="customer_address"
                                                     placeholder="Enter customer address!" :value="old('customer_address')"></x-form.input>
@@ -86,6 +95,15 @@
                                                 @enderror
                                             </div>
 
+                                            <div class="mb-3">
+                                                <x-form.label for="guarantor_cnic">Guarantor CNIC</x-form.label>
+                                                <x-form.input type="text" id="guarantor_cnic" name="guarantor_cnic" maxlength="13"
+                                                    placeholder="Enter guarantor cnic!" :value="old('guarantor_cnic')"></x-form.input>
+                                                @error('guarantor_cnic')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            
                                             <div class="mb-3">
                                                 <x-form.label for="guarantor_address">Guarantor address</x-form.label>
                                                 <x-form.input type="text" id="guarantor_address" name="guarantor_address"

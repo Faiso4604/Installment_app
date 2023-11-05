@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('customer_name');
             $table->string('customer_phone');
+            $table->string('customer_cnic');
             $table->string('customer_address');
             $table->string('customer_placeofwork');
             $table->string('guarantor_name');
             $table->string('guarantor_phone');
+            $table->string('guarantor_cnic');
             $table->string('guarantor_address');
             $table->string('guarantor_placeofwork');
             $table->timestamps();

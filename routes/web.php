@@ -15,6 +15,7 @@ use App\Http\Controllers\superadmin\DashboardController;
 use App\Http\Controllers\admin\AdminInstallmentController;
 use App\Http\Controllers\superadmin\InstallmentController;
 use App\Http\Controllers\admin\AdminCustomerListController;
+use App\Http\Controllers\customer\CustomerController;
 use App\Http\Controllers\superadmin\CustomersListController;
 use App\Http\Controllers\superadmin\CustomerRequestController;
 use App\Http\Middleware\AdminAuthentication;
@@ -41,6 +42,9 @@ Route::controller(AuthController::class)->group(function () {
     });
     Route::get('logout', 'logout')->name('logout');
 });
+
+
+
 
 Route::middleware(Authenticate::class)->group(function () {
     // Super Admin Section
@@ -104,30 +108,34 @@ Route::middleware(Authenticate::class)->group(function () {
     });
 
     // Admin Section
-    Route::middleware(AdminAuthentication::class)->group(function () {
+    Route::middleware(AdminAuthentication::class)->prefix('admin/')->group(function () {
         Route::controller(AdminDashboardController::class)->group(function () {
-            Route::get('admin/dashboard', 'index')->name('admin.dashboard');
+            Route::get('dashboard', 'index')->name('admin.dashboard');
         });
 
         Route::controller(AdminProfileController::class)->group(function () {
-            Route::get('admin/profile/edit', 'edit')->name('admin.profile');
-            Route::post('admin/picture/edit', 'update_picture')->name('admin.profile.picture');
+            Route::get('profile/edit', 'edit')->name('admin.profile');
+            Route::post('picture/edit', 'update_picture')->name('admin.profile.picture');
         });
 
         Route::controller(AdminCustomerListController::class)->group(function () {
-            Route::get('admin/customerlist/index', 'index')->name('admin.customerlist');
-            Route::get('admin/customerlist/create', 'create')->name('admin.customer.create');
-            Route::post('admin/customerlist/create', 'store');
-            Route::get('admin/customerlist/{customer}/details', 'details')->name('admin.customer.details');
+            Route::get('customerlist/index', 'index')->name('admin.customerlist');
+            Route::get('customerlist/create', 'create')->name('admin.customer.create');
+            Route::post('customerlist/create', 'store');
+            Route::get('customerlist/{customer}/details', 'details')->name('admin.customer.details');
         });
 
         Route::controller(AdminItemsController::class)->group(function () {
-            Route::get('admin/item/{customer}/create', 'create')->name('admin.item.create');
-            Route::post('admin/item/{customer}/create', 'store');
+            Route::get('item/{customer}/create', 'create')->name('admin.item.create');
+            Route::post('item/{customer}/create', 'store');
         });
 
         Route::controller(AdminInstallmentController::class)->group(function () {
-            Route::post('admin/installment/{item}/create', 'store')->name('admin.installment.create');
+            Route::post('installment/{item}/create', 'store')->name('admin.installment.create');
         });
     });
+});
+
+Route::controller(CustomerController::class)->prefix('customer/')->group(function () {
+    Route::get('show', 'show')->name('customer.show');
 });

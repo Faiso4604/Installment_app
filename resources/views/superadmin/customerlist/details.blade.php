@@ -31,6 +31,8 @@
                                     <div class="mb-2"><strong>Customer Name: </strong>{{ $customer->customer_name }}</div>
                                     <div class="mb-2"><strong>Customer Phone: </strong>{{ $customer->customer_phone }}
                                     </div>
+                                    <div class="mb-2"><strong>Customer CNIC: </strong>{{ $customer->customer_cnic }}
+                                    </div>
                                     <div class="mb-2"><strong>Customer Address: </strong>{{ $customer->customer_address }}
                                     </div>
                                     <div class="mb-2"><strong>Customer Place of work:
@@ -42,6 +44,8 @@
                                     <div class="mb-2"><strong>Guarantor Name: </strong>{{ $customer->guarantor_name }}
                                     </div>
                                     <div class="mb-2"><strong>Guarantor Phone: </strong>{{ $customer->guarantor_phone }}
+                                    </div>
+                                    <div class="mb-2"><strong>Guarantor CNIC: </strong>{{ $customer->guarantor_cnic }}
                                     </div>
                                     <div class="mb-2"><strong>Guarantor Address:
                                         </strong>{{ $customer->guarantor_address }}</div>
@@ -183,6 +187,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <br><br>
                         @else
                             <div class="alert alert-info m-4 text-center">No record found</div>
                         @endif
