@@ -20,7 +20,7 @@
                             <strong>Created date: </strong>
                         </div>
                         <div class="col-6 text-end mb-1">
-                            <a href="{{ route('customer.logout') }}" class="btn btn-danger btn-sm"><i data-feather="log-out"></i>Logout</a>
+                            <a href="" class="btn btn-danger btn-sm"><i data-feather="log-out"></i>Logout</a>
                         </div>
                     </div>
                     <div class="card">

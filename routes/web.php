@@ -44,8 +44,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 
-
-
+// Admins Section
 Route::middleware(Authenticate::class)->group(function () {
     // Super Admin Section
     Route::middleware(SuperAdminAuthentication::class)->prefix('superadmin')->group(function () {
@@ -137,5 +136,7 @@ Route::middleware(Authenticate::class)->group(function () {
 });
 
 Route::controller(CustomerController::class)->prefix('customer/')->group(function () {
+    Route::post('/', 'customer_login')->name('customer.login');
     Route::get('show', 'show')->name('customer.show');
+    Route::get('logout', 'logout')->name('customer.logout');
 });

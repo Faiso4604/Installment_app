@@ -543,24 +543,24 @@
             transition: all 0.6s ease-in-out;
         }
 
-        .sign-in {
+        .admin-login {
             left: 0;
             width: 50%;
             z-index: 2;
         }
 
-        .container.active .sign-in {
+        .container.active .admin-login {
             transform: translateX(100%);
         }
 
-        .sign-up {
+        .customer-login {
             left: 0;
             width: 50%;
             opacity: 0;
             z-index: 1;
         }
 
-        .container.active .sign-up {
+        .container.active .customer-login {
             transform: translateX(100%);
             opacity: 1;
             z-index: 5;
@@ -669,7 +669,7 @@
     <div class="container" id="container">
 
         {{-- Admin-LOGIN Page --}}
-        <div class="form-container sign-in">
+        <div class="form-container admin-login">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 @if (Session::has('success'))
@@ -708,31 +708,27 @@
         </div>
 
         {{-- Customer-LOGIN Page --}}
-        <div class="form-container sign-up">
-            <form method="POST" action="{{ route('login') }}">
+        <div class="form-container customer-login">
+            <form method="POST" action="{{ route('customer.login') }}">
                 @csrf
-
                 <h1>Sign In</h1>
-                <span>as Super-Admin/Admin</span>
+                <span>as customer with your Phone & CNIC</span>
                 <div class="input-group first">
-                    <input id="email" required="" type="email" name="email"
-                        class="input @error('email') is-invalid @enderror">
-                    <label class="user-label">Email</label>
-                    @error('email')
+                    <input id="customer_phone" required="" type="text" name="customer_phone"
+                        class="input @error('customer_phone') is-invalid @enderror">
+                    <label class="user-label">Phone</label>
+                    @error('customer_phone')
                         <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="input-group">
-                    <input type="password" name="password" required class="input">
-                    <label for="password" class="user-label">Password</label>
-                    @error('password')
+                    <input type="text" name="customer_cnic" required class="input">
+                    <label for="cnic" class="user-label">cnic</label>
+                    @error('cnic')
                         <span class="invalid-feedback" role="alert">{{ $message }}</span>
                     @enderror
                 </div>
-                <button>Sign In</button>
-                <a href="{{ route('customer.show') }}" class="btn btn-outline-dark btn-sm">
-                    <i data-feather="login"></i> Login As Customer
-                </a>
+                <button><a href="{{ route('customer.login') }}" class="text-white">Sign In</a></button>
             </form>
         </div>
 
@@ -742,12 +738,12 @@
                 <div class="toggle-panel toggle-left">
                     <h1>Admin's Login</h1>
                     <p>Only Admin can login</p>
-                    <button class="hidden" id="login">Sign In</button>
+                    <button class="hidden" id="login">Sign-In as Admin</button>
                 </div>
                 <div class="toggle-panel toggle-right">
                     <h1>Customer Login</h1>
                     <p>Login as customer to view your items & installment data</p>
-                    <button class="hidden" id="register">Sign In</button>
+                    <button class="hidden" id="register">Sign-In as Customer</button>
                 </div>
             </div>
         </div>

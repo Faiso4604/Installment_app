@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\customer;
 
-use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -14,12 +16,37 @@ class CustomerController extends Controller
     {
     }
 
+    public function customer_login(Request $request)
+    {
+        $customer = Customer::where('customer_phone', $request->input('customer_phone'))
+            ->where('customer_cnic', $request->input('customer_cnic'))
+            ->first();
+
+        if ($customer) {
+            return redirect()->route('customer.show');
+        } else {
+            // Handle case when no matching customer is found
+            return redirect()->route('customer.login')->with('error', 'Customer not found.');
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      */
+    public function show()
+    {
+        return view('customer.show');
+    }
+
     public function create()
     {
         //
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login')->with(['success'=> 'Succesfully logout']);
     }
 
     /**
@@ -33,11 +60,6 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
-    {
-        return view('customer.show');
-    }
-
     /**
      * Show the form for editing the specified resource.
      */
