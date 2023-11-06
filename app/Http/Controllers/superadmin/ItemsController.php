@@ -38,8 +38,8 @@ class ItemsController extends Controller
     {
         $request->validate([
             'product_name' => ['required'],
-            'actual_price' => ['required'],
-            'down_payment' => ['required'],
+            'actual_price' => ['required', 'numeric'],
+            'down_payment' => ['required', 'numeric'],
             'plan_id' => ['required'],
         ]);
 

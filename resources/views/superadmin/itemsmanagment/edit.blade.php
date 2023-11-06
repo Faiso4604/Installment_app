@@ -1,10 +1,20 @@
 @extends('superadmin.layouts.superadmin_main')
-@section('title', 'Add Item')
+@section('title', 'Edit Item')
 @section('content')
     <main class="content">
         <div class="container-fluid p-0">
-            <div class="row">
-                <div class="col-12">
+
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6">
+                        <h2>Edit item</h2>
+                    </div>
+                    <div class="col-6 text-end">
+                        <a href="{{ route('items.show') }}" class="btn btn-success">Back</a>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="card">
                         <div class="card-body">
                             @include('superadmin.partials.alerts')
@@ -12,8 +22,6 @@
                                 <div class="row">
 
                                     {{-- Item Details --}}
-                                    <h2 class="text-center"></h2>
-
                                     <table class="table table-bordered text-center ">
                                         <thead>
                                             <tr>
@@ -73,16 +81,24 @@
                                                     <x-form.label for="">Plan</x-form.label>
                                                     <select class="form-select" id="plans-input" name="plan_id"
                                                         aria-label="Default select example">
-                                                        <option selected>Select Plan</option>
+                                                        <option selected disabled>Select Plan</option>
                                                         @foreach ($plans as $plan)
-                                                            <option value="{{ $plan->id }}"
-                                                                data-interest="{{ $plan->interest_rate }}"
-                                                                data-month="{{ $plan->months }}">{{ $plan->plan_name }}
-                                                            </option>
+                                                            @if (old('plan_id') === $plan->id)
+                                                                <option value="{{ $plan->id }}"
+                                                                    data-interest="{{ $plan->interest_rate }}"
+                                                                    data-month="{{ $plan->months }}">
+                                                                    {{ $plan->plan_name }}
+                                                                </option>
+                                                            @else
+                                                                <option value="{{ $plan->id }}" selected
+                                                                    data-interest="{{ $plan->interest_rate }}"
+                                                                    data-month="{{ $plan->months }}">
+                                                                    {{ $plan->plan_name }}
+                                                                </option>
+                                                            @endif
                                                         @endforeach
                                                     </select>
                                                 </div>
-
 
                                             </div>
 
@@ -169,6 +185,10 @@
             perMonthElement.innerText = perMonth;
             totalAmountElement.innerText = totalAmount;
         });
+        const inputEvent = new Event('input', {
+            bubbles: true
+        });
+        plansInputElement.dispatchEvent(inputEvent);
     </script>
 
 @endsection

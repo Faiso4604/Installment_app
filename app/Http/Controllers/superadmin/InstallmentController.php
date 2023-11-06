@@ -31,7 +31,7 @@ class InstallmentController extends Controller
     public function store(Request $request, Item $item)
     {
         $request->validate([
-            'add_installment' => ['required'],
+            'add_installment' => ['required', 'numeric'],
             'remark' => ['required'],
         ]);
 

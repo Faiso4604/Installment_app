@@ -3,6 +3,7 @@
 @section('content')
     <main class="content">
         <div class="container-fluid p-0">
+            <h1 class="text-center">All Items List</h1>
             <div class="row">
                     <div class="card">
                         <div class="card-body">

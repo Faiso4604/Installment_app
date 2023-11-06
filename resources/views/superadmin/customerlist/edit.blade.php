@@ -45,6 +45,15 @@
                                             </div>
 
                                             <div class="mb-3">
+                                                <x-form.label for="customer_cnic">Customer Cnic</x-form.label>
+                                                <x-form.input type="text" id="customer_cnic" name="customer_cnic"
+                                                :value="old('customer_cnic') ?? $customer->customer_cnic"></x-form.input>
+                                                @error('customer_cnic')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-3">
                                                 <x-form.label for="customer_address">Customer address</x-form.label>
                                                 <x-form.input type="text" id="customer_address" name="customer_address"
                                                 :value="old('customer_address') ?? $customer->customer_address"></x-form.input>
@@ -81,6 +90,15 @@
                                                 <x-form.input type="text" id="guarantor_phone" name="guarantor_phone"
                                                 :value="old('guarantor_phone') ?? $customer->guarantor_phone"></x-form.input>
                                                 @error('guarantor_phone')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <x-form.label for="guarantor_cnic">Guarantor cnic</x-form.label>
+                                                <x-form.input type="text" id="guarantor_cnic" name="guarantor_cnic"
+                                                :value="old('guarantor_cnic') ?? $customer->guarantor_cnic"></x-form.input>
+                                                @error('guarantor_cnic')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>

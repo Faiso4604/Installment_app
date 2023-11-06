@@ -33,8 +33,8 @@ class PlansController extends Controller
     {
         $request->validate([
             'plan_name' => ['required'],
-            'months' => ['required'],
-            'interest_rate' => ['required'],
+            'months' => ['required', 'numeric'],
+            'interest_rate' => ['required', 'numeric'],
 
         ]);
 
@@ -80,8 +80,8 @@ class PlansController extends Controller
     {
         $request->validate([
             'plan_name' => ['required'],
-            'months' => ['required'],
-            'interest_rate' => ['required'],
+            'months' => ['required', 'numeric'],
+            'interest_rate' => ['required', 'numeric'],
         ]);
 
         $data = [
@@ -101,13 +101,13 @@ class PlansController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Plan $plan)
-    {
-        $is_deleted = $plan->delete();
-        if ($is_deleted) {
-            return back()->with(['success' => $plan->plan_name . ' plan has been deleted']);
-        } else {
-            return back()->with(['failure' => 'Something went wrong']);
-        }
-    }
+    // public function destroy(Plan $plan)
+    // {
+    //     $is_deleted = $plan->delete();
+    //     if ($is_deleted) {
+    //         return back()->with(['success' => $plan->plan_name . ' plan has been deleted']);
+    //     } else {
+    //         return back()->with(['failure' => 'Something went wrong']);
+    //     }
+    // }
 }

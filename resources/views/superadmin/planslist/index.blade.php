@@ -40,7 +40,7 @@
                                                 <td>
                                                     <div class="mt-2 mb-2">
                                                         <a href="{{ route('plans.edit', $plan) }}" class="btn btn-primary">Edit</a>
-                                                        <a href="{{ route('plan.destroy', $plan) }}" class="btn btn-danger">Delete</a>
+                                                        {{-- <a href="{{ route('plan.destroy', $plan) }}" class="btn btn-danger">Delete</a> --}}
                                                     </div>
                                                 </td>
                                             </tr>

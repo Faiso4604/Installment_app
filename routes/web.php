@@ -84,7 +84,7 @@ Route::middleware(Authenticate::class)->group(function () {
             Route::post('plans/create', 'store');
             Route::get('plans/{plan}/edit', 'edit')->name('plans.edit');
             Route::post('plans/{plan}/edit', 'update');
-            Route::get('plans/{plan}/destroy', 'destroy')->name('plan.destroy');
+            // Route::get('plans/{plan}/destroy', 'destroy')->name('plan.destroy');
         });
 
         Route::controller(ItemsController::class)->group(function () {
@@ -137,6 +137,6 @@ Route::middleware(Authenticate::class)->group(function () {
 
 Route::controller(CustomerController::class)->prefix('customer/')->group(function () {
     Route::post('/', 'customer_login')->name('customer.login');
-    Route::get('show', 'show')->name('customer.show');
+    Route::get('show/{customer}', 'show')->name('customer.show');
     Route::get('logout', 'logout')->name('customer.logout');
 });

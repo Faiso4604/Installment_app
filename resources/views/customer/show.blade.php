@@ -20,7 +20,8 @@
                             <strong>Created date: </strong>
                         </div>
                         <div class="col-6 text-end mb-1">
-                            <a href="{{ route('customer.logout') }}" class="btn btn-danger btn-sm"><i data-feather="log-out"></i>Logout</a>
+                            <a href="{{ route('customer.logout') }}" class="btn btn-danger btn-sm"><i
+                                    data-feather="log-out"></i>Logout</a>
                         </div>
                     </div>
                     <div class="card">
@@ -29,81 +30,84 @@
                             <div class="row">
                                 {{-- Customer data --}}
                                 <div class="col-md-6 text-right">
-                                    <div class="mb-2"><strong>Customer Name: </strong>add</div>
-                                    <div class="mb-2"><strong>Customer Phone: </strong>add
+                                    <div class="mb-2"><strong>Customer Name: </strong>{{ $customer->customer_name }}
                                     </div>
-                                    <div class="mb-2"><strong>Customer Address: </strong>add
+                                    <div class="mb-2"><strong>Customer Phone: </strong>{{ $customer->customer_phone }}
+                                    </div>
+                                    <div class="mb-2"><strong>Customer Address:
+                                        </strong>{{ $customer->customer_address }}
                                     </div>
                                     <div class="mb-2"><strong>Customer Place of work:
-                                        </strong>add</div>
+                                        </strong>{{ $customer->customer_placeofwork }}</div>
                                 </div>
 
                                 {{-- Guarantor data --}}
                                 <div class="col-md-6 text-right">
-                                    <div class="mb-2"><strong>Guarantor Name: </strong>adad
+                                    <div class="mb-2"><strong>Guarantor Name: </strong>{{ $customer->guarantor_name }}
                                     </div>
-                                    <div class="mb-2"><strong>Guarantor Phone: </strong>adada
+                                    <div class="mb-2"><strong>Guarantor Phone:
+                                        </strong>{{ $customer->guarantor_phone }}
                                     </div>
                                     <div class="mb-2"><strong>Guarantor Address:
-                                        </strong>add</div>
+                                        </strong>{{ $customer->guarantor_address }}</div>
                                     <div class="mb-2"><strong>Guarantor Place of work:
-                                        </strong>asd</div>
+                                        </strong>{{ $customer->guarantor_placeofwork }}</div>
                                 </div>
                             </div>
 
                             {{-- Product Details --}}
                             {{-- @foreach ($items as $item) --}}
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row border">
-                                        <div class="col-md-6">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <th>Item Name: </th>
-                                                        <td>2500</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Actual Price: </th>
-                                                        <td>24000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Down Payment: </th>
-                                                        <td>2500</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Item Balance: </th>
-                                                        <td>2500</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row border">
+                                            <div class="col-md-6">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Item Name: </th>
+                                                            <td>{{ $items->item_name }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Actual Price: </th>
+                                                            <td>24000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Down Payment: </th>
+                                                            <td>2500</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Item Balance: </th>
+                                                            <td>2500</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
 
-                                        <div class="col-md-6">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <th>Profit: </th>
-                                                        <td>2000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Due: </th>
-                                                        <td>25000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Per Month: </th>
-                                                        <td>2000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Total:</th>
-                                                        <td>25000</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                            <div class="col-md-6">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>Profit: </th>
+                                                            <td>2000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Due: </th>
+                                                            <td>25000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Per Month: </th>
+                                                            <td>2000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Total:</th>
+                                                            <td>25000</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             {{-- @endforeach --}}
                         </div>
 

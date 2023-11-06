@@ -6,7 +6,7 @@
 
             <div class="row">
                 <div class="col-6">
-                    <h2>Add Admin</h2>
+                    <h2>Add Plan</h2>
                 </div>
                 <div class="col-6 text-end">
                     <a href="{{ route('plans.show') }}" class="btn btn-success">Back</a>
@@ -42,7 +42,7 @@
                                         <div class="mb-3">
                                             <x-form.label for="interest_rate">Interest Rate</x-form.label>
                                             <x-form.input type="text" id="interest_rate" name="interest_rate"
-                                                placeholder="Enter interest rate!"></x-form.input>
+                                                placeholder="Enter interest rate!" :value="old('interest_rate')"></x-form.input>
                                             @error('interest_rate')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror

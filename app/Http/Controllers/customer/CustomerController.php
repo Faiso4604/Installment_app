@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\customer;
 
+use App\Models\Item;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,19 +24,22 @@ class CustomerController extends Controller
             ->first();
 
         if ($customer) {
-            return redirect()->route('customer.show');
+            return redirect()->route('customer.show', $customer);
         } else {
             // Handle case when no matching customer is found
-            return redirect()->route('customer.login')->with('error', 'Customer not found.');
+            return redirect()->route('customer.login')->with('failure', 'Customer not found.');
         }
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function show()
+    public function show(Customer $customer)
     {
-        return view('customer.show');
+        return view('customer.show', [
+            'customer' => $customer,
+            'items' => Item::where('customer_id', '=', $customer->id)->paginate(1),
+        ]);
     }
 
     public function create()

@@ -18,11 +18,11 @@
             </li>
 
 
-            <li class="sidebar-item">
+            {{-- <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('request.show') }}">
                     <i class="align-middle" data-feather="git-pull-request"></i> <span class="align-middle">Item Requests</span>
                 </a>
-            </li>
+            </li> --}}
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ route('admin.show') }}">
