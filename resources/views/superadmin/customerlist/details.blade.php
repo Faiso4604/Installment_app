@@ -94,7 +94,7 @@
                                                             <td>{{ $item->per_month }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Due: </th>
+                                                            <th>Remaining: </th>
                                                             <td>{{ $item->remaining_amount }}</td>
                                                         </tr>
                                                         <tr>

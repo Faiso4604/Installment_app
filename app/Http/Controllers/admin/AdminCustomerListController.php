@@ -34,13 +34,13 @@ class AdminCustomerListController extends Controller
     {
         $request->validate([
             'customer_name' => ['required'],
-            'customer_phone' => ['required'],
-            'customer_cnic' => ['required'],
+            'customer_phone' => ['required', 'numeric'],
+            'customer_cnic' => ['required', 'numeric'],
             'customer_address' => ['required'],
             'customer_placeofwork' => ['required'],
             'guarantor_name' => ['required'],
-            'guarantor_phone' => ['required'],
-            'guarantor_cnic' => ['required'],
+            'guarantor_phone' => ['required', 'numeric'],
+            'guarantor_cnic' => ['required', 'numeric'],
             'guarantor_address' => ['required'],
             'guarantor_placeofwork' => ['required'],
         ]);

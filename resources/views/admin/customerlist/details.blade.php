@@ -90,12 +90,12 @@
                                                             <td>{{ $item->profit }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th>Due: </th>
-                                                            <td>{{ $item->total_due_amount }}</td>
-                                                        </tr>
-                                                        <tr>
                                                             <th>Per Month: </th>
                                                             <td>{{ $item->per_month }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Remaining: </th>
+                                                            <td>{{ $item->remaining_amount }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th>Total:</th>
@@ -107,45 +107,62 @@
                                         </div>
                                     </div>
 
+                                    {{-- Installments section --}}
                                     <div class="col-md-6 border p-2">
-                                        <form class="form-group" action="{{ route('admin.installment.create', $item) }}"
-                                            method="POST">
-                                            @csrf
+                                        @if ($item->remaining_amount > 0)
+                                            {{-- Installments section --}}
+                                            <form class="form-group" action="{{ route('admin.installment.create', $item) }}"
+                                                method="POST">
+                                                @csrf
 
-                                            <div class="row">
-                                                <div class="col-md-5 m-auto text-center mt-4">
-                                                <x-form.label for="add_installment">Amount</x-form.label>
-                                                    <input type="text" class="form-control text-center"
-                                                        name="add_installment" id="add_installment"
-                                                        placeholder="Enter the receiving amount" value="{{ old('add_installment') }}">
+                                                <div class="row">
+                                                    <div class="col-md-5 m-auto text-center mt-4">
+                                                        <x-form.label for="add_installment">Amount</x-form.label>
+                                                        <input type="text" class="form-control text-center"
+                                                            name="add_installment" id="add_installment"
+                                                            placeholder="Enter the receiving amount"
+                                                            value="{{ old('add_installment') }}">
                                                         @error('add_installment')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
+                                                            <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
 
-                                                <div class="col-md-5 m-auto text-center mt-4">
-                                                    <x-form.label for="">Remarks</x-form.label>
-                                                    <select class="form-select" id="remark" name="remark"
-                                                        aria-label="Disabled select example" value="{{ old('add_installment') }}">
-                                                        <option selected disabled>Payment remark</option>
+                                                    <div class="col-md-5 m-auto text-center mt-4">
+                                                        <x-form.label for="">Remarks</x-form.label>
+                                                        <select class="form-select" id="remark" name="remark"
+                                                            aria-label="Disabled select example"
+                                                            value="{{ old('add_installment') }}">
+                                                            <option selected disabled>Payment remark</option>
                                                             <option>Cash</option>
                                                             <option>Easypaisa</option>
                                                             <option>Bank Account</option>
                                                             <option>Other</option>
-                                                    </select>
-                                                    @error('remark')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
+                                                        </select>
+                                                        @error('remark')
+                                                            <div class="text-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="row text mt-2">
-                                                <div class="col-md-12 m-2 text-center">
-                                                    <button type="submit" class="btn btn-primary">Add
-                                                        installment</button>
+                                                <div class="row text-center mt-2">
+                                                    <div class="col-md-12 m-2 text-center">
+                                                        <button type="submit" class="btn btn-primary">Add
+                                                            installment</button>
+                                                    </div>
                                                 </div>
+                                            </form>
+                                        @elseif ($item->remaining_amount == 0)
+                                            {{-- Total remaining amount when it's zero --}}
+                                            <div class="row text-center mt-5">
+                                                <div class="text-danger">Total remaining amount =
+                                                    <strong><span>{{ $item->remaining_amount }}</span></strong></div>
                                             </div>
-                                        </form>
+                                        @else
+                                            {{-- Display an error message when remaining balance is negative --}}
+                                            <div class="row text-center mt-2">
+                                                <div class="text-danger">Remaining balance cannot be negative.</div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             @endforeach
@@ -156,26 +173,28 @@
                                 <table class="table table-bordered table-responsive">
                                     <thead>
                                         <tr>
+                                            <th scope="col">Sr.no</th>
                                             <th scope="col">Date</th>
                                             <th scope="col">Installment</th>
                                             <th scope="col">Remaining</th>
                                             <th scope="col">Remarks</th>
-                                            <th scope="col">Action</th>
+                                            {{-- <th scope="col">Action</th> --}}
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         @foreach ($item->installments as $installment)
                                             <tr>
+                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $installment->created_at->format('d-M-Y - h:i A') }}</td>
                                                 <th>{{ $installment->add_installment }}</th>
                                                 <td>{{ $installment->total_remaining_amount }}</td>
                                                 <th>{{ $installment->remark }}</th>
-                                                <td>
+                                                {{-- <td>
                                                     <a href="" class="btn btn-primary btn-sm">
                                                         <i data-feather="printer"></i> Print
                                                     </a>
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
