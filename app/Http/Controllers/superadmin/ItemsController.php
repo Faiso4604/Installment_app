@@ -135,6 +135,8 @@ class ItemsController extends Controller
                 'remaining_amount' => $total_due_amount,
             ];
 
+            // dd($data);
+
             $is_registered = $item->update($data);
 
             if ($is_registered) {

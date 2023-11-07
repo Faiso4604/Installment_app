@@ -17,7 +17,7 @@
                 <div class="col-8 m-auto mt-3">
                     <div class="row">
                         <div class="col-6">
-                            <strong>Created date: </strong>
+                            <strong>Created date: {{ $customer->created_at->format('d-M-Y') }}</strong>
                         </div>
                         <div class="col-6 text-end mb-1">
                             <a href="{{ route('customer.logout') }}" class="btn btn-danger btn-sm"><i
@@ -56,7 +56,7 @@
                             </div>
 
                             {{-- Product Details --}}
-                            {{-- @foreach ($items as $item) --}}
+                            @foreach ($items as $item)
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="row border">
@@ -65,7 +65,7 @@
                                                     <tbody>
                                                         <tr>
                                                             <th>Item Name: </th>
-                                                            <td>{{ $items->item_name }}</td>
+                                                            <td>{{ $item->item_name }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th>Actual Price: </th>
@@ -108,7 +108,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            {{-- @endforeach --}}
+                            @endforeach
                         </div>
 
                         {{-- @if (count($items) > 0) --}}

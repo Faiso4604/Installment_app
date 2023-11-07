@@ -27,7 +27,7 @@ class CustomerController extends Controller
             return redirect()->route('customer.show', $customer);
         } else {
             // Handle case when no matching customer is found
-            return redirect()->route('customer.login')->with('failure', 'Customer not found.');
+            return redirect()->route('login')->with('failure', 'Customer not found.');
         }
     }
 
@@ -38,7 +38,7 @@ class CustomerController extends Controller
     {
         return view('customer.show', [
             'customer' => $customer,
-            'items' => Item::where('customer_id', '=', $customer->id)->paginate(1),
+            'items' => $customer->items()->paginate(1),
         ]);
     }
 

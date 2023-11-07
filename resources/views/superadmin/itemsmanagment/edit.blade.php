@@ -82,21 +82,40 @@
                                                     <select class="form-select" id="plans-input" name="plan_id"
                                                         aria-label="Default select example">
                                                         <option selected disabled>Select Plan</option>
-                                                        @foreach ($plans as $plan)
-                                                            @if (old('plan_id') === $plan->id)
-                                                                <option value="{{ $plan->id }}"
-                                                                    data-interest="{{ $plan->interest_rate }}"
-                                                                    data-month="{{ $plan->months }}">
-                                                                    {{ $plan->plan_name }}
-                                                                </option>
-                                                            @else
-                                                                <option value="{{ $plan->id }}" selected
-                                                                    data-interest="{{ $plan->interest_rate }}"
-                                                                    data-month="{{ $plan->months }}">
-                                                                    {{ $plan->plan_name }}
-                                                                </option>
-                                                            @endif
-                                                        @endforeach
+                                                        @if (old('plan_id'))
+                                                            @foreach ($plans as $plan)
+                                                                @if (old('plan_id') === $plan->id)
+                                                                    <option value="{{ $plan->id }}" selected
+                                                                        data-interest="{{ $plan->interest_rate }}"
+                                                                        data-month="{{ $plan->months }}">
+                                                                        {{ $plan->plan_name }}
+                                                                    </option>
+                                                                @else
+                                                                    <option value="{{ $plan->id }}"
+                                                                        data-interest="{{ $plan->interest_rate }}"
+                                                                        data-month="{{ $plan->months }}">
+                                                                        {{ $plan->plan_name }}
+                                                                    </option>
+                                                                @endif
+                                                            @endforeach
+                                                        @else
+                                                            @foreach ($plans as $plan)
+                                                                @if ($item->plan_id === $plan->id)
+                                                                    <option value="{{ $plan->id }}" selected
+                                                                        data-interest="{{ $plan->interest_rate }}"
+                                                                        data-month="{{ $plan->months }}">
+                                                                        {{ $plan->plan_name }}
+                                                                    </option>
+                                                                @else
+                                                                    <option value="{{ $plan->id }}"
+                                                                        data-interest="{{ $plan->interest_rate }}"
+                                                                        data-month="{{ $plan->months }}">
+                                                                        {{ $plan->plan_name }}
+                                                                    </option>
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+
                                                     </select>
                                                 </div>
 

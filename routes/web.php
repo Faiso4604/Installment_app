@@ -135,8 +135,8 @@ Route::middleware(Authenticate::class)->group(function () {
     });
 });
 
-Route::controller(CustomerController::class)->prefix('customer/')->group(function () {
-    Route::post('/', 'customer_login')->name('customer.login');
+Route::controller(CustomerController::class)->prefix('customer')->group(function () {
+    Route::post('login', 'customer_login')->name('customer.login');
     Route::get('show/{customer}', 'show')->name('customer.show');
     Route::get('logout', 'logout')->name('customer.logout');
 });

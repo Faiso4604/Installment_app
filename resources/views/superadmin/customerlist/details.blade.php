@@ -154,7 +154,7 @@
                                         @elseif ($item->remaining_amount == 0)
                                             {{-- Total remaining amount when it's zero --}}
                                             <div class="row text-center mt-5">
-                                                <div class="text-danger">Total remaining amount =
+                                                <div class="text-success">Total remaining amount =
                                                     <strong><span>{{ $item->remaining_amount }}</span></strong></div>
                                             </div>
                                         @else
@@ -164,8 +164,6 @@
                                             </div>
                                         @endif
                                     </div>
-
-
                                 </div>
                             @endforeach
                         </div>
