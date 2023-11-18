@@ -50,7 +50,7 @@ class CustomerController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('login')->with(['success'=> 'Succesfully logout']);
+        return redirect()->route('login')->with(['success' => 'Succesfully logout']);
     }
 
     /**

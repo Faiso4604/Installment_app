@@ -12,9 +12,9 @@
 
 <body>
     <main class="content">
-        <div class="container-fluid p-0">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-8 m-auto mt-3">
+                <div class="col-10 m-auto mt-3">
                     <div class="row">
                         <div class="col-6">
                             <strong>Created date: {{ $customer->created_at->format('d-M-Y') }}</strong>
@@ -69,15 +69,15 @@
                                                         </tr>
                                                         <tr>
                                                             <th>Actual Price: </th>
-                                                            <td>24000</td>
+                                                            <td>{{ $item->item_price }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th>Down Payment: </th>
-                                                            <td>2500</td>
+                                                            <td>{{ $item->down_payment }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th>Item Balance: </th>
-                                                            <td>2500</td>
+                                                            <td>{{ $item->balance }}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -88,19 +88,19 @@
                                                     <tbody>
                                                         <tr>
                                                             <th>Profit: </th>
-                                                            <td>2000</td>
+                                                            <td>{{ $item->profit }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th>Due: </th>
-                                                            <td>25000</td>
+                                                            <td>{{ $item->remaining_amount }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th>Per Month: </th>
-                                                            <td>2000</td>
+                                                            <td>{{ $item->per_month }}</td>
                                                         </tr>
                                                         <tr>
                                                             <th>Total:</th>
-                                                            <td>25000</td>
+                                                            <td>{{ $item->total_amount }}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -111,35 +111,38 @@
                             @endforeach
                         </div>
 
-                        {{-- @if (count($items) > 0) --}}
-                        <div class="mx-1">
-                            <table class="table table-bordered table-responsive">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Installment</th>
-                                        <th scope="col">Remaining</th>
-                                    </tr>
-                                </thead>
+                        @if (count($items) > 0)
+                            <div class="mx-1">
+                                <table class="table table-bordered table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Sr.no</th>
 
-                                <tbody>
-                                    {{-- @foreach ($item->installments as $installment) --}}
-                                    <tr>
-                                        <td>10/03/2024</td>
-                                        <th>2000</th>
-                                        <td>20000</td>
-                                    </tr>
-                                    {{-- @endforeach --}}
-                                </tbody>
-                            </table>
-                        </div>
-                        {{-- @else
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Installment</th>
+                                            <th scope="col">Remaining</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach ($item->installments as $installment)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $installment->created_at }}</td>
+                                            <th>{{ $installment->add_installment }}</th>
+                                            <td>{{ $installment->total_remaining_amount }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
                             <div class="alert alert-info m-4 text-center">No record found</div>
-                        @endif --}}
+                        @endif
 
                         <div class="row justify-content-end mx-3">
                             <div class="col-auto">
-                                {{-- {{ $items->links() }} --}}
+                                {{ $items->links() }}
                             </div>
                         </div>
                     </div>

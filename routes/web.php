@@ -19,6 +19,7 @@ use App\Http\Controllers\customer\CustomerController;
 use App\Http\Controllers\superadmin\CustomersListController;
 use App\Http\Controllers\superadmin\CustomerRequestController;
 use App\Http\Middleware\AdminAuthentication;
+use App\Http\Middleware\CustomerAuthentication;
 use App\Http\Middleware\SuperAdminAuthentication;
 
 /*
@@ -135,8 +136,10 @@ Route::middleware(Authenticate::class)->group(function () {
     });
 });
 
+// Route::middleware(CustomerAuthentication::class)->group(function () {
 Route::controller(CustomerController::class)->prefix('customer')->group(function () {
     Route::post('login', 'customer_login')->name('customer.login');
     Route::get('show/{customer}', 'show')->name('customer.show');
     Route::get('logout', 'logout')->name('customer.logout');
 });
+// });
